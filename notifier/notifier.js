@@ -22,12 +22,11 @@ app.get("/", (req, res) => {
 app.listen(port, () => console.log(`Listening to port ${port}`))
 
 const notify = ({title, msg}, cb) => {
-    console.log(title,msg)
     notifier.notify(
       {
         appName: "com.notifier.id",
         title: title || "unknown",
-        message: msg || "message",
+        message: msg || "sourish is gae",
         sound: true,
         wait: true,
         reply: true,
