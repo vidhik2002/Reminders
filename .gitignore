@@ -1,1 +1,4 @@
 notifier/node_modules
+examples/cli-basics/flag-value/flag-value.exe
+examples/cli-basics/flagset/flagset.exe
+examples/cli-basics/os-args/os-args.exe
