@@ -1,13 +1,11 @@
 package client
 
-import "fmt"
+import (
+	"fmt"
+	"os"
+)
 
 type BackendHTTPClient interface {
-}
-type Switch struct {
-	client        BackendHTTPClient
-	backendAPIURL string
-	commands      map[string]func() func(string) error
 }
 
 func NewSwitch(uri string) Switch {
@@ -24,6 +22,19 @@ func NewSwitch(uri string) Switch {
 		"health": s.health,
 	}
 	return s
+}
+type Switch struct {
+	client        BackendHTTPClient
+	backendAPIURL string
+	commands      map[string]func() func(string) error
+}
+func (s Switch) Switch() error{
+	cmdNameofCommand := os.Args[1]
+	cmd, ok := s.commands[cmdNameofCommand]
+	if !ok{
+		return fmt.Errorf("invalid command - '%s'", cmdNameofCommand)
+	}
+	return cmd()(cmdNameofCommand) 
 }
 
 func (s Switch) create() func(string) error {
