@@ -1,8 +1,9 @@
-package client
+package main
 
 import (
 	"flag"
 	"os"
+	"fmt"
 	"test3/Reminders/client"
 )
 
@@ -17,5 +18,11 @@ func main() {
 	if *helpFlag || len(os.Args) == 1 {
 		s.Help()
 		return
+	}
+
+	err := s.Switch()
+	if err != nil {
+		fmt.Printf("command error: %s", err)
+		os.Exit(2)
 	}
 }
