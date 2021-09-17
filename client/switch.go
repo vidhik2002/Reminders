@@ -29,12 +29,19 @@ type Switch struct {
 	commands      map[string]func() func(string) error
 }
 func (s Switch) Switch() error{
-	cmdNameofCommand := os.Args[1]
-	cmd, ok := s.commands[cmdNameofCommand]
+	cmdName := os.Args[1]
+	cmd, ok := s.commands[cmdName]
 	if !ok{
-		return fmt.Errorf("invalid command - '%s'", cmdNameofCommand)
+		return fmt.Errorf("invalid command - '%s'", cmdName)
 	}
-	return cmd()(cmdNameofCommand) 
+	return cmd()(cmdName) 
+}
+func (s Switch) Help() {
+	var help string
+	for name := range s.commands {
+		help += name + "\t --help\n"
+	}
+	fmt.Printf(" Usage: %s:\n <command> [<args>]\n%s", os.Args[0], help)
 }
 
 func (s Switch) create() func(string) error {

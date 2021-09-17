@@ -2,7 +2,6 @@ package client
 
 import (
 	"flag"
-	"fmt"
 	"os"
 	"test3/Reminders/client"
 )
@@ -14,9 +13,9 @@ var (
 
 func main() {
 	flag.Parse()
-	client.NewSwitch(*backendURIFlag)
+	s := client.NewSwitch(*backendURIFlag)
 	if *helpFlag || len(os.Args) == 1 {
-		fmt.Println("help command")
+		s.Help()
 		return
 	}
 }
