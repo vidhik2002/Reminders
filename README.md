@@ -1,7 +1,13 @@
 # Reminders
 A CLI Tool for Reminders made using GoLang!
 
-#### Made using 
+#### Features - 
+1. Create Reminder
+2. Edit Reminder
+3. Delete Reminder
+4. Fetch Reminder
+
+#### Made using -
 - [Go](https://go.dev/)
 - [Flag Package](https://pkg.go.dev/flag)
 - [Node Notifier](https://www.npmjs.com/package/node-notifier)
