@@ -161,7 +161,7 @@ func (s Switch) health() func(string) error {
 		if !s.client.Healthy(host){
 			fmt.Printf("host %s is running\n", host)
 		}else {
-			fmt.Printf("host %s is down\n",0ost)
+			fmt.Printf("host %s is down\n",host)
 		}
 		
 		return nil
@@ -174,8 +174,8 @@ func (s Switch) reminderFlags(f *flag.FlagSet) (*string, *string, *time.Duration
 	f.StringVar(&t, "t", "", "Title")
 	f.StringVar(&m, "message", "", "Message")
 	f.StringVar(&m, "m", "", "Message")
-	f.StringVar(&d, "duration",0,"Duration")
-	f.StringVar(&d, "d", 0, "Duration")
+	f.DurationVar(&d, "duration",0,"Duration")
+	f.DurationVar(&d, "d", 0, "Duration")
 	return &t, &m, &d
 }
 
